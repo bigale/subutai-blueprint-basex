@@ -39,6 +39,7 @@
         - php7.0-gd
         - php7.0-curl
         - apache2
+        - libapache2-mod-php7.0
         - mariadb-server
         - python-mysqldb
         - unzip
