@@ -21,38 +21,56 @@
   remote_user: root
   tasks: 
 
-    - name: Install php
-      apt:
-        name: php7.0
+    - name: Install required debs
+      apt: 
+        name: "{{ item }}"
         state: present
         allow_unauthenticated: yes
+      with_items: 
+        - php7.0
+        - php7.0-cgi
+        - php7.0-mysql
+        - php7.0-zip
+        - php7.0-dom
+        - php7.0-xmlwriter
+        - php7.0-xmlreader
+        - php7.0-xml
+        - php7.0-mbstring
+        - php7.0-gd
+        - php7.0-curl
+        - apache2
+        - mariadb-server
+        - python-mysqldb
+        - unzip
 
-    - name: Install php7.0-cgi
-      apt:
-        name: php7.0-cgi
+    - name: Create database
+      mysql_db: 
+        name: "{{ db }}"
         state: present
-        allow_unauthenticated: yes
+        encoding: utf8
 
-    - name: Install php7.0-mysql
-      apt:
-        name: php7.0-mysql
-        state: present
-        allow_unauthenticated: yes
+    - name: Create database user
+      mysql_user: 
+        name: "{{ db_user }}"
+        password: "{{ db_pwd }}"
+        priv: "{{ db }}.*:ALL"
 
-    - name: Install apache2
-      apt:
+    - name: Download and unzip nextcloud
+      unarchive: 
+        src: "http://download.nextcloud.com/server/releases/nextcloud-11.0.1.zip"
+        dest: "/var/www/html"
+        remote_src: yes
+        validate_certs: no
+
+    - name: Change file ownership
+      file: 
+        path: /var/www/html/nextcloud
+        recurse: yes
+        owner: www-data
+        group: www-data
+
+    - name: Restart apache
+      service: 
         name: apache2
-        state: present
-        allow_unauthenticated: yes
-
-    - name: Install mariadb-server
-      apt:
-        name: mariadb-server
-        state: present
-        allow_unauthenticated: yes
-
-    - name: Install python-mysqldb
-      apt:
-        name: python-mysqldb
-        state: present
-        allow_unauthenticated: yes
+        state: restarted
+        

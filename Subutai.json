@@ -31,20 +31,20 @@
         "ansible-playbook": "site.yml",
         "extra-vars": [
             {
-                "key": "site_title",
-                "value": "${siteTitle}"
-            }, 
-            {
                 "key": "domain_name",
                 "value": "${domainName}"
             }, 
             {
-                "key": "admin_user",
-                "value": "${adminUser}"
+                "key": "db",
+                "value": "${db}"
             }, 
             {
-                "key": "admin_pwd",
-                "value": "${adminPwd}"
+                "key": "db_user",
+                "value": "${dbUser}"
+            }, 
+            {
+                "key": "db_pwd",
+                "value": "${dbPwd}"
             }
         ],
         "groups": [
@@ -69,20 +69,23 @@
             "default": "change.the.domain",
             "validation": "[a-zA-Z0-9]+"
         },
-        "siteTitle": {
-            "description": "Enter the site's title",
+        "db": {
+            "description": "Nextgen database name",
             "type": "string",
-            "default": "title"
+            "default": "nextgen", 
+            "validation": "[a-zA-Z0-9]+"
+        },        
+        "dbUser": {
+            "description": "Nextgen database user",
+            "type": "string",
+            "default": "nextgen", 
+            "validation": "[a-zA-Z0-9]+"
         },
-        "adminUser": {
-            "description": "Site administrator user",
+        "dbPwd": {
+            "description": "Nextgen database password",
             "type": "string",
-            "default": "admin"
-        },
-        "adminPwd": {
-            "description": "Site administrator password",
-            "type": "string",
-            "default": "admin"
+            "default": "nextgen", 
+            "validation": "[a-zA-Z0-9]+"
         },
         "webContainerName": {
             "description": "Enter the container's hostname",
