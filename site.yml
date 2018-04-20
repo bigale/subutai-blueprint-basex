@@ -1,3 +1,4 @@
+# Ansible Playbook for Subutai Nextcloud blueprint
 ---
 
 - hosts: all
@@ -42,7 +43,6 @@
         - libapache2-mod-php7.0
         - mariadb-server
         - python-mysqldb
-        apache://www.server4you.com/dedicated-server- unzip
 
     - name: Create database
       mysql_db: 
@@ -70,8 +70,14 @@
         owner: www-data
         group: www-data
 
+    - name: Change file ownership
+      template:
+        src: files/index.html
+        dest: /var/www/html/index.html
+
     - name: Restart apache
       service: 
         name: apache2
         state: restarted
         
+# vim: ts=2 et nowrap autoindent
