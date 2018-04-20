@@ -42,7 +42,7 @@
         - libapache2-mod-php7.0
         - mariadb-server
         - python-mysqldb
-        - unzip
+        apache://www.server4you.com/dedicated-server- unzip
 
     - name: Create database
       mysql_db: 
@@ -58,7 +58,7 @@
 
     - name: Download and unzip nextcloud
       unarchive: 
-        src: "http://download.nextcloud.com/server/releases/nextcloud-11.0.1.zip"
+        src: "http://download.nextcloud.com/server/releases/nextcloud-12.0.6.zip"
         dest: "/var/www/html"
         remote_src: yes
         validate_certs: no
