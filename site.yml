@@ -32,3 +32,27 @@
         name: php7.0-cgi
         state: present
         allow_unauthenticated: yes
+
+    - name: Install php7.0-mysql
+      apt:
+        name: php7.0-mysql
+        state: present
+        allow_unauthenticated: yes
+
+    - name: Install apache2
+      apt:
+        name: apache2
+        state: present
+        allow_unauthenticated: yes
+
+    - name: Install mariadb-server
+      apt:
+        name: mariadb-server
+        state: present
+        allow_unauthenticated: yes
+
+    - name: Install python-mysqldb
+      apt:
+        name: python-mysqldb
+        state: present
+        allow_unauthenticated: yes
