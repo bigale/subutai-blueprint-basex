@@ -71,7 +71,7 @@
         owner: www-data
         group: www-data
 
-    - name: Change file ownership
+    - name: Redirect base url
       template:
         src: files/index.html
         dest: /var/www/html/index.html
