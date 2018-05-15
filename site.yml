@@ -74,14 +74,9 @@
         owner: www-data
         group: www-data
 
-#    - name: Redirect base url
-#      template:
-#        src: files/index.html
-#        dest: /var/www/html/index.html
-
-#    - name: Restart apache
-#      service: 
-#        name: apache2
-#        state: restarted
+    - name: Restart apache
+      service: 
+        name: apache2
+        state: restarted
         
 # vim: ts=2 et nowrap autoindent
