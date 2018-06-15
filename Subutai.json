@@ -1,7 +1,7 @@
 {
     "name": "${environmentName}",
     "description": "Nextcloud",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "author": "https://github.com/lbthomsen",
     "ssh-key": "lth", 
     "containers": [
@@ -97,7 +97,7 @@
             "description": "Container Size",
             "type": "enum",
             "default": "SMALL",
-            "validation": "TINY,SMALL,MEDIUM,LARGE,HUGE"
+            "validation": "MEDIUM,LARGE,HUGE"
         }
     }
 }
