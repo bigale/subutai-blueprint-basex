@@ -1,26 +1,17 @@
 # Ansible Playbook for Subutai Nextcloud blueprint
 ---
 
-- hosts: all
-  gather_facts: false
-  remote_user: root
-  tasks: 
-
-    - name: Update
-      raw: apt-get -y --allow-unauthenticated update || true
-
-    - name: Ensure python is available
-      raw: test -e /usr/bin/python || apt install -y --allow-unauthenticated python-minimal
-
-    - name: Ensure python-apt is available
-      raw: test -d /usr/share/python-apt || apt install -y --allow-unauthenticated python-apt
-
-    - name: Upgrade
-      raw: apt-get -y --allow-unauthenticated upgrade
-
 - hosts: nc
   remote_user: root
   tasks: 
+
+     - name: Disable dpkg fsync
+      raw: test -e /etc/dpkg/dpkg.cfg.d/unsafe-io || echo force-unsafe-io > /etc/dpkg/dpkg.cfg.d/unsafe-io
+
+    - name: Upgrade debian
+      apt:
+        update_cache: true
+        upgrade: true
 
     - name: Install required debs
       apt: 
@@ -60,19 +51,32 @@
     - name: Download and unzip nextcloud
       unarchive: 
         src: "http://download.nextcloud.com/server/releases/latest.zip"
-        dest: "/tmp"
+        dest: "/var/www"
         remote_src: yes
         validate_certs: no
 
-    - name: Move files
-      command: bash -c "mv /tmp/nextcloud/* /var/www/html/"
-
     - name: Change file ownership
       file: 
-        path: /var/www/html
+        path: /var/www/nextcloud
         recurse: yes
         owner: www-data
         group: www-data
+
+    - name: Create apache config
+      template:
+        src: files/nextcloud.conf
+        dest: /etc/apache2/sites-available
+
+    - name: Disable default apache config
+      file: 
+        path: /etc/apache2/sites-enabled/000-default.conf
+        state: absent
+
+    - name: Enable nextcloud apache config
+      file:
+        src: /etc/apache2/sites-available/nextcloud.conf
+        dest: /etc/apache2/sites-enabled/nextcloud.conf
+        state: link
 
     - name: Restart apache
       service: 
