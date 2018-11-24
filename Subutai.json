@@ -1,7 +1,7 @@
 {
     "name": "${environmentName}",
     "description": "Nextcloud",
-    "version": "2.0.1",
+    "version": "2.0.2",
     "author": "https://github.com/lbthomsen",
     "ssh-key": "lth", 
     "containers": [
@@ -65,13 +65,13 @@
             "validation": "[a-zA-Z0-9]+"
         },
         "adminUser": {
-            "description": "Nextgen admin user",
+            "description": "Nextcloud admin user",
             "type": "string",
             "default": "admin", 
             "validation": "[a-zA-Z0-9]+"
         },
         "adminPwd": {
-            "description": "Nextgen admin password",
+            "description": "Nextcloud admin password",
             "type": "string",
             "default": "SuperSecret", 
             "validation": "[a-zA-Z0-9]+"
