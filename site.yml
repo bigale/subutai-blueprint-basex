@@ -90,5 +90,13 @@
         chdir: /var/www/nextcloud
       become: yes
       become_user: www-data
+
+    - name: Add domain to config
+      lineinfile:
+        path: /var/www/nextcloud/config/config.php
+        insertafter: '^.*0 =>' 
+        line: "    1 => '{{ domain_name }}',"
+        owner: www-data
+        group: www-data
         
 # vim: ts=2 et nowrap autoindent
