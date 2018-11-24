@@ -34,16 +34,12 @@
                 "value": "${domainName}"
             }, 
             {
-                "key": "db",
-                "value": "${db}"
+                "key": "admin_user",
+                "value": "${adminUser}"
             }, 
             {
-                "key": "db_user",
-                "value": "${dbUser}"
-            }, 
-            {
-                "key": "db_pwd",
-                "value": "${dbPwd}"
+                "key": "admin_pwd",
+                "value": "${adminPwd}"
             }
         ],
         "groups": [
@@ -68,22 +64,16 @@
             "default": "change.the.domain",
             "validation": "[a-zA-Z0-9]+"
         },
-        "db": {
-            "description": "Nextgen database name",
+        "adminUser": {
+            "description": "Nextgen admin user",
             "type": "string",
-            "default": "nextcloud", 
-            "validation": "[a-zA-Z0-9]+"
-        },        
-        "dbUser": {
-            "description": "Nextgen database user",
-            "type": "string",
-            "default": "nextcloud", 
+            "default": "admin", 
             "validation": "[a-zA-Z0-9]+"
         },
-        "dbPwd": {
-            "description": "Nextgen database password",
+        "adminPwd": {
+            "description": "Nextgen admin password",
             "type": "string",
-            "default": "nextcloud", 
+            "default": "SuperSecret", 
             "validation": "[a-zA-Z0-9]+"
         },
         "webContainerName": {
