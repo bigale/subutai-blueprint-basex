@@ -87,7 +87,7 @@
     - name: Configure nextcloud
       shell: php occ maintenance:install --database "mysql" --database-name "nextcloud"  --database-user "nextcloud" --database-pass "nextcloud" --admin-user "{{ admin_user }}" --admin-pass "{{ admin_pwd }}"
       args: 
-        chdir: /var/www/html
+        chdir: /var/www/nextcloud
       become: yes
       become_user: www-data
         
