@@ -71,19 +71,19 @@
         "db": {
             "description": "Nextgen database name",
             "type": "string",
-            "default": "nextgen", 
+            "default": "nextcloud", 
             "validation": "[a-zA-Z0-9]+"
         },        
         "dbUser": {
             "description": "Nextgen database user",
             "type": "string",
-            "default": "nextgen", 
+            "default": "nextcloud", 
             "validation": "[a-zA-Z0-9]+"
         },
         "dbPwd": {
             "description": "Nextgen database password",
             "type": "string",
-            "default": "nextgen", 
+            "default": "nextcloud", 
             "validation": "[a-zA-Z0-9]+"
         },
         "webContainerName": {
