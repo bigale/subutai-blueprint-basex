@@ -51,7 +51,7 @@
 
     - name: Download and unzip nextcloud
       unarchive: 
-        src: "https://download.nextcloud.com/server/releases/nextcloud-15.0.1.zip"
+        src: "https://download.nextcloud.com/server/releases/nextcloud-15.0.0.zip"
         dest: "/var/www"
         remote_src: yes
         validate_certs: no
